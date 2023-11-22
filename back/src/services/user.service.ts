@@ -15,6 +15,10 @@ const userReadService =  async():Promise<UserRead> =>{
   return userReadSchema.parse(await userRepository.find())
 }
 
+const UserRetrieveService = async (userId: string): Promise<User | null> =>{
+  return await userRepository.findOneBy({id:parseInt(userId)})
+  
+}
 const userPartialUpdateService = async(user:User, payload: UserUpdate): Promise<UserReturn> =>{
   const newUser: User = userRepository.create({...user, ...payload})
   await userRepository.save(newUser)
@@ -26,4 +30,4 @@ const userDeleteService =  async(user:User):Promise<void> =>{
   await userRepository.remove(user)
 }
 
-export {userCreateService, userReadService, userDeleteService, userPartialUpdateService}
+export {userCreateService, userReadService, userDeleteService, userPartialUpdateService, UserRetrieveService}

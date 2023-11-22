@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUserController, deleteUserController, partialUpdateUserController, readUserController } from "../controllers/user.controller";
+import { createUserController, deleteUserController, partialUpdateUserController, readUserController, retrieveUserController } from "../controllers/user.controller";
 import { validateBodyMiddleware } from "../middlewares/validateBody.middleware";
 import { userCreateSchema, userUpdateSchema } from "../schemas/user.schema";
 import { verifyEmailExist } from "../middlewares/verifyEmailExist.middleware";
@@ -19,6 +19,14 @@ userRouter.get(
   "",
   verifyToken,
   readUserController
+  )
+
+  userRouter.get(
+    "/:id",
+    verifyToken,
+    verifyUserPermission,
+    verifyIdExist,
+    retrieveUserController
   )
 
   userRouter.patch(

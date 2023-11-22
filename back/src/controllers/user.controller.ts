@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import User from "../entities/users.entity";
 import { UserRead, UserReturn } from "../interfaces/user.interface";
-import { userCreateService, userDeleteService, userPartialUpdateService, userReadService} from "../services/user.service";
+import { UserRetrieveService, userCreateService, userDeleteService, userPartialUpdateService, userReadService} from "../services/user.service";
 
 const createUserController = async(req: Request, res: Response): Promise<Response> =>{
   const create: UserReturn = await userCreateService(req.body)
@@ -10,6 +10,11 @@ const createUserController = async(req: Request, res: Response): Promise<Respons
 
 const readUserController =  async(req: Request, res: Response): Promise<Response> =>{
   const user: UserRead =  await userReadService()
+  return res.status(200).json(user)
+}
+
+const retrieveUserController = async(req: Request, res: Response): Promise<Response> =>{
+  const user: User | null =  await UserRetrieveService(req.params.id)
   return res.status(200).json(user)
 }
 
@@ -26,4 +31,4 @@ const deleteUserController =  async(req: Request, res: Response): Promise<Respon
   return res.status(204).json()
 }
 
-export { createUserController, readUserController, deleteUserController, partialUpdateUserController}
+export { createUserController, readUserController, deleteUserController, partialUpdateUserController, retrieveUserController}
