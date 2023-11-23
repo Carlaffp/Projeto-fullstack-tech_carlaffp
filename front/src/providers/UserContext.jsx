@@ -82,14 +82,13 @@ export const UserProvider = ({children}) =>{
       console.log(data)
       const newUser = data
       console.log(user)
-      // const newUser = user.map(user =>{
-      //   if(user.id === data.id){
-      //     return data
-      //   }else{
-      //     return user
-      //   }
-      // })
-      setUser()
+      if(data.id === id){
+        setUser(data)
+        return data
+      }else{
+
+        setUser(user)
+      }
       
     }catch (error) {
       console.log(error);

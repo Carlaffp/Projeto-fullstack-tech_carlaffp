@@ -3,12 +3,11 @@ import { UserContext } from "../../providers/UserContext"
 
 import { ContactContext } from "../../providers/ContactContext"
 import { UserSection } from "../../Components/UserSection"
+import { ContactSection } from "../../Components/ContactSection"
 
 
 export const DashboardPage = () =>{
   const {logout} = useContext(UserContext)
-  const {user} = useContext(UserContext)
-  const {contactList} = useContext(ContactContext)
 
   return(
     <div>
@@ -16,9 +15,7 @@ export const DashboardPage = () =>{
       
       <main>
        <UserSection/>
-       <section>
-
-       </section>
+       <ContactSection/> 
 
       </main>
     </div>

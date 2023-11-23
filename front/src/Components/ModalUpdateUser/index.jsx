@@ -10,10 +10,7 @@ export const ModalUpdateUser = ({ setIsOpen, user }) => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
-  } = useForm({
-    resolver: zodResolver(UpdateUserSchema),
-  });
+  } = useForm();
   const{updateUser} = useContext(UserContext)
 
   const modalRef = useRef(null);
@@ -50,28 +47,28 @@ export const ModalUpdateUser = ({ setIsOpen, user }) => {
        placeholder = "digite seu nome completo"
        type= "text"
        {...register("fullName")}
-       error={errors.fullName}
+       
        />
-       {/* <Input
+       <Input
        label = "Email"
        placeholder = "digite seu email"
        type= "text"
        {...register("email")}
-       error={errors.email}
-       /> */}
+       
+       />
        <Input
        label = "Senha"
        placeholder = "digite sea senha"
        type= "password"
        {...register("password")}
-       error={errors.password}
+       
        />
        <Input
        label = "Contato"
        placeholder = "digite seu telefone"
        type= "text"
        {...register("phone")}
-       error={errors.phone}
+       
        />
        <button>Salvar Alterações</button>
           </form>

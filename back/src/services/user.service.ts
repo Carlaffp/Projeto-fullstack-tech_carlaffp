@@ -19,9 +19,14 @@ const UserRetrieveService = async (userId: string): Promise<User | null> =>{
   return await userRepository.findOneBy({id:parseInt(userId)})
   
 }
-const userPartialUpdateService = async(user:User, payload: UserUpdate): Promise<UserReturn> =>{
-  const newUser: User = userRepository.create({...user, ...payload})
-  await userRepository.save(newUser)
+const userPartialUpdateService = async(user:User, payload: UserUpdate | any): Promise<UserReturn> =>{
+  const newData = payload
+  for(const key in newData){
+    if (newData.hasOwnProperty(key) && newData[key] === '' || newData[key]===null || newData[key] === undefined){
+       delete newData[key]
+    }
+  }
+  const newUser = await userRepository.save({...user, ...newData})
   return userReturnSchema.parse(newUser)
 }
 

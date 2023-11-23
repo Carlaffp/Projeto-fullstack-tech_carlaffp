@@ -21,8 +21,9 @@ const readContactController = async(req: Request, res:Response):Promise<Response
   }
 
   const updateContactController = async(req: Request, res:Response):Promise<Response> =>{
+    const {sub} = res.locals.decoded
     const foundContact = Number(req.params.id)
-    const updateContact = await contactUpdateService(foundContact, req.body)
+    const updateContact = await contactUpdateService(foundContact, req.body, sub)
     return res.status(200).json(updateContact)
   }
 

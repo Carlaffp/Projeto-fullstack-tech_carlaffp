@@ -27,11 +27,11 @@ import { contactSchema, contactReturnSchema} from "../schemas/contact.schema";
   }
 
 
-  const contactReadService = async(userId: number):Promise<User[]> =>{
+  const contactReadService = async(userId: number):Promise<User | null> =>{
     const userAndContacts = await userRepository.createQueryBuilder("user")
     .leftJoinAndSelect("user.contacts", "contact")
     .where("user.id= :id", {id: userId})
-    const result = userAndContacts.getMany()
+    const result = userAndContacts.getOne()
     return result
    }
 
@@ -49,10 +49,28 @@ import { contactSchema, contactReturnSchema} from "../schemas/contact.schema";
 
  }
 
- const contactUpdateService = async(contact: number, payload:ContactUpdate):Promise<Contact> =>{
+ const contactUpdateService = async(contact: number, payload:ContactUpdate | any, userId:number):Promise<Contact> =>{
   const foundContact: Contact | null = await contactRepository.findOneBy({id:contact})
   if (!foundContact) throw new AppError("Contact not found")
-  return await contactRepository.save({...foundContact, ...payload})
+  
+  const newData = payload
+  for(const key in newData){
+    if (newData.hasOwnProperty(key) && newData[key] === '' || newData[key]===null || newData[key] === undefined){
+       delete newData[key]
+    }
+  }
+  const foundEmail = await contactRepository.createQueryBuilder("contact")
+  .where("contact.userId= :userId", {userId: userId})
+  .andWhere("contact.email= :email", {email:payload.email})
+
+  const result = await foundEmail.getMany()
+  
+  if(result.length != 0){
+    throw new AppError("There is already a contact registered with this email.")
+
+  }
+  
+  return await contactRepository.save({...foundContact, ...newData})
  }
 
  const contactDeleteService = async(contact: Contact, userId: number): Promise<void> =>{

@@ -8,6 +8,7 @@ export const ContactContext = createContext({})
 export const ContactProvider = ({children}) =>{
   const[contactList, setContactList] = useState([])
 
+
   const {use} = useContext(UserContext)
 
   useEffect(()=>{
@@ -20,7 +21,7 @@ export const ContactProvider = ({children}) =>{
               Authorization: `Bearer ${token}`
             }
           })
-          setContactList(data)
+          setContactList(data.contacts)
 
         }catch (error) {
           console.log(error);
@@ -32,7 +33,7 @@ export const ContactProvider = ({children}) =>{
 
   const createContact = async(formData) =>{
     try{
-      //const newData = {...formData, use}
+      
       const token = localStorage.getItem("@TOKEN")
       const {data} = await api.post("/contacts", formData, {
         headers:{
@@ -40,8 +41,10 @@ export const ContactProvider = ({children}) =>{
         }
       })
       setContactList((contactList) => [...contactList,data])
+      alert("criado com sucesso")
     }catch (error) {
       console.log(error);
+      alert("email já cadastrado")
   }
 }
 
@@ -54,15 +57,17 @@ export const ContactProvider = ({children}) =>{
         },
       });
       setContactList((contactList) => contactList.filter((contact) => contact.id !== id))
+      alert("deletado com sucesso")
     } catch (error) {
       console.log(error);
+      alert("não deletado")
     }
   };
 
   const updateContact = async(formData, id) => {
     try {
       const token = localStorage.getItem("@TOKEN");
-     const{data} = await api.delete(`/contacts/${id}`, formData, {
+     const{data} = await api.patch(`/contacts/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -77,6 +82,7 @@ export const ContactProvider = ({children}) =>{
       }))
     } catch (error) {
       console.log(error);
+      alert("email ja cadastrado em seus contatos")
     }
   };
 
