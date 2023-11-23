@@ -67,6 +67,8 @@ export const ContactProvider = ({children}) =>{
   const updateContact = async(formData, id) => {
     try {
       const token = localStorage.getItem("@TOKEN");
+      console.log(token)
+      console.log(formData)
      const{data} = await api.patch(`/contacts/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,

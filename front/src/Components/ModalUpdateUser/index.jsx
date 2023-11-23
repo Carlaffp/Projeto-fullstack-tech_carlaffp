@@ -10,6 +10,7 @@ export const ModalUpdateUser = ({ setIsOpen, user }) => {
     register,
     handleSubmit,
     reset,
+    formState:{errors}
   } = useForm();
   const{updateUser} = useContext(UserContext)
 
@@ -42,35 +43,29 @@ export const ModalUpdateUser = ({ setIsOpen, user }) => {
         </header>
         <main>
           <form onSubmit={handleSubmit(submit)}>
-          <Input
-       label = "Nome Completo"
-       placeholder = "digite seu nome completo"
-       type= "text"
-       {...register("fullName")}
-       
-       />
-       <Input
-       label = "Email"
-       placeholder = "digite seu email"
-       type= "text"
-       {...register("email")}
-       
-       />
-       <Input
-       label = "Senha"
-       placeholder = "digite sea senha"
-       type= "password"
-       {...register("password")}
-       
-       />
-       <Input
-       label = "Contato"
-       placeholder = "digite seu telefone"
-       type= "text"
-       {...register("phone")}
-       
-       />
-       <button>Salvar Alterações</button>
+            <Input
+              label = "Nome Completo"
+              placeholder = "digite seu nome completo"
+              type= "text"
+              {...register("fullName")}
+        
+            />
+            <Input
+              label = "Email"
+              placeholder = "digite seu email"
+              type= "text"
+              {...register("email", {required: "Email deve ser preenchido"})}
+            
+            />
+            {errors.email && <p>{errors.email.message}</p>}
+            <Input
+              label = "Contato"
+              placeholder = "digite seu telefone"
+              type= "text"
+              {...register("phone")}
+            
+            />
+            <button>Salvar Alterações</button>
           </form>
         </main>
       </div>
