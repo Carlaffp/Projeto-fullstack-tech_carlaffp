@@ -8,22 +8,22 @@ import { sign } from "jsonwebtoken";
 
 const LoginCreateService = async({email, password}: LoginCreate):Promise<LoginReturn> =>{
   
-  const userLogin: User | null = await userRepository.findOneBy({email})
+  const user: User | null = await userRepository.findOneBy({email})
 
-  if(!userLogin) throw new AppError("Invalid credentials", 401)
+  if(!user) throw new AppError("Invalid credentials", 401)
   
 
-  const passwordIsValid: boolean = await compare(password, userLogin.password)
+  const passwordIsValid: boolean = await compare(password, user.password)
 
   if(!passwordIsValid) throw new AppError("Invalid credentials",401)
   
   const token: string = sign(
-    {email:userLogin.email},
+    {email:user.email},
     process.env.SECRET_KEY!,
-    {subject: userLogin.id.toString(), expiresIn: process.env.EXPIRES_IN!}
+    {subject: user.id.toString(), expiresIn: process.env.EXPIRES_IN!}
   )
 
-    return {token}
+  return {user, token}
 }
 
 export {LoginCreateService}

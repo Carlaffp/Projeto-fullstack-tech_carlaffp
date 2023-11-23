@@ -13,7 +13,7 @@ export const RegisterSchema = z
     password: z
       .string()
       .nonempty("A senha é obrigatória")
-      .min(8, "A senha  precisa de no mínimo 6 caracteres")
+      .min(6, "A senha  precisa de no mínimo 6 caracteres")
       .regex(/(?=.*?[A-Z])/, "É necessário ao menos uma letra maiúscula")
       .regex(/(?=.*?[a-z])/, "É necessário ao menos uma letra minúscula")
       .regex(/(?=.*?[0-9])/, "É necessário pelo menos um número")
