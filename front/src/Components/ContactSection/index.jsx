@@ -3,6 +3,10 @@ import { ContactContext } from "../../providers/ContactContext"
 import { ContactCard } from "./ContactCard"
 import { ModalCreateContact } from "../ModalCreateContact"
 import { ModalUpdateAndDeleteContact } from "../ModalUpdateAndDeleteContact"
+import { StyledContactSection } from "./ContactSection"
+import { StyledParagraph, StyledTitleTwo } from "../../styles/typography"
+import { StyledButton } from "../../styles/buttons"
+import { StyledContainerList } from "../../styles/grid"
 
 
 export const ContactSection = () =>{
@@ -13,17 +17,20 @@ export const ContactSection = () =>{
   const {contactList} = useContext(ContactContext)
 
   return(
-    <section>
-      <div>
-        <h1>Contatos</h1>
-        <button onClick={() => setIsOpen(true)}>+</button>
+    <StyledContactSection>
+      <div className="container">
+        <StyledTitleTwo>Contatos</StyledTitleTwo>
+        <StyledButton
+        buttonStyle="black"
+        buttonSize="sm"
+        onClick={() => setIsOpen(true)}>+</StyledButton>
         {isOpen? (
           <ModalCreateContact setIsOpen={setIsOpen}/>
         ): null}
       </div>
-      <div>
+      <StyledContainerList>
         {contactList.length <= 0? (
-          <p>Você ainda não tem contatos cadastrados</p>
+          <StyledParagraph fontWeight="lg" fontSize="sm" fontColor="white">Você ainda não tem contatos cadastrados</StyledParagraph>
         ): (
           <>
           {contactList.map(contact => (
@@ -35,12 +42,12 @@ export const ContactSection = () =>{
           ))}
           </>
         )}
-      </div>
+      </StyledContainerList>
       {isOpenContactModal ? (
         <ModalUpdateAndDeleteContact 
         setIsOpenContactModal={setIsOpenContactModal}
         contact={contact}/>
       ): null}
-    </section>
+    </StyledContactSection>
   )
 }

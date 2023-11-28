@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../services/api";
 import { UserContext } from "./UserContext";
+import { toast } from "react-toastify";
 
 
 export const ContactContext = createContext({})
@@ -41,10 +42,10 @@ export const ContactProvider = ({children}) =>{
         }
       })
       setContactList((contactList) => [...contactList,data])
-      alert("criado com sucesso")
+      toast.success("Contato criado com sucesso")
     }catch (error) {
       console.log(error);
-      alert("email já cadastrado")
+      toast.error("Email já cadastrado em seus contatos")
   }
 }
 
@@ -57,18 +58,16 @@ export const ContactProvider = ({children}) =>{
         },
       });
       setContactList((contactList) => contactList.filter((contact) => contact.id !== id))
-      alert("deletado com sucesso")
+      toast.success("Contato deletado com sucesso")
     } catch (error) {
       console.log(error);
-      alert("não deletado")
+      
     }
   };
 
   const updateContact = async(formData, id) => {
     try {
       const token = localStorage.getItem("@TOKEN");
-      console.log(token)
-      console.log(formData)
      const{data} = await api.patch(`/contacts/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -82,9 +81,10 @@ export const ContactProvider = ({children}) =>{
           return contact
         }
       }))
+      toast.success("Contato atualizado com sucesso")
     } catch (error) {
       console.log(error);
-      alert("email ja cadastrado em seus contatos")
+      toast.error("Email ja cadastrado em seus contatos")
     }
   };
 

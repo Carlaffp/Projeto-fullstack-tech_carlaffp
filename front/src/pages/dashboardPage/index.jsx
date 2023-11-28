@@ -4,6 +4,7 @@ import { UserContext } from "../../providers/UserContext"
 import { ContactContext } from "../../providers/ContactContext"
 import { UserSection } from "../../Components/UserSection"
 import { ContactSection } from "../../Components/ContactSection"
+import { Header } from "../../Components/Header"
 
 
 export const DashboardPage = () =>{
@@ -11,12 +12,10 @@ export const DashboardPage = () =>{
 
   return(
     <div>
-      <button onClick={logout}>Sair</button>
-      
+      <Header/>
       <main>
        <UserSection/>
        <ContactSection/> 
-
       </main>
     </div>
   )

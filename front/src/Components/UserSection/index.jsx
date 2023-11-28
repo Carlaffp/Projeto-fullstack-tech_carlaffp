@@ -2,6 +2,8 @@ import { UserContext } from "../../providers/UserContext"
 import { useContext, useState } from "react"
 import { FaGear } from "react-icons/fa6";
 import { ModalUpdateUser } from "../ModalUpdateUser";
+import { StyledUserSection } from "./UserSection";
+import { StyledTitleOne } from "../../styles/typography";
 
 
 export const UserSection = () =>{
@@ -11,17 +13,15 @@ export const UserSection = () =>{
   
 
   return(
-    <section>
-      <div>
-        <p>{user.fullName}</p>
-      </div>
-      <div>
+    <StyledUserSection>
+      <div className="container">
+        <StyledTitleOne fontSize="lg"> Olá, {user.fullName}</StyledTitleOne>
         <button onClick={() => setIsOpen(true)}>
-          <FaGear/>
+          <FaGear size={30}/>
         </button>
         {isOpen? (<ModalUpdateUser setIsOpen={setIsOpen} user={user}/>): null}
         
       </div>
-    </section>
+    </StyledUserSection>
   )
 }

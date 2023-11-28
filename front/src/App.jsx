@@ -1,13 +1,18 @@
 import { useState } from 'react'
 import { RoutersMain } from './routes/RoutesMain'
+import { StyledToast } from './styles/toast'
+import { ResetStyle } from './styles/reset'
+import { GlobalStyle } from './styles/global'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <div>
+        <ResetStyle/>
+        <GlobalStyle/>
       <RoutersMain/>
+        <StyledToast autoClose={4000}/>
       </div>
     </>
   )

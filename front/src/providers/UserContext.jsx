@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const UserContext = createContext({})
 export const UserProvider = ({children}) =>{
@@ -41,8 +42,10 @@ export const UserProvider = ({children}) =>{
     try{
       const {data} = await api.post("/users", formData)
       navigate("/")
+      toast.success("Cadastro realizado com sucesso")
     }catch (error){
       console.log(error)
+      toast.error("Email já cadastrado")
     }
   }
 
@@ -54,8 +57,10 @@ export const UserProvider = ({children}) =>{
       localStorage.setItem("@TOKEN", data.token)
       localStorage.setItem("@USERID", data.user.id);
       navigate("/dashboard")
+      toast.success("Login realizado com sucesso")
     }catch (error){
       console.log(error)
+      toast.error("Email ou senha inválidos")
     }finally{
       setLoading(false)
     }

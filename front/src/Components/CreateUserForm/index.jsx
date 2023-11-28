@@ -5,6 +5,8 @@ import { useContext } from "react"
 import { UserContext } from "../../providers/UserContext"
 import { Input } from "../Input"
 import { api } from "../../services/api"
+import { StyledForm } from "../../styles/form"
+import { StyledButton } from "../../styles/buttons"
 
 export const CreateUserForm = () =>{
   const {register,handleSubmit,reset, formState: {errors} } = useForm({
@@ -21,7 +23,7 @@ export const CreateUserForm = () =>{
   
   return(
     <div>
-      <form onSubmit={handleSubmit(submit)}>
+      <StyledForm onSubmit={handleSubmit(submit)}>
        <Input
        label = "Nome Completo"
        placeholder = "digite seu nome completo"
@@ -57,8 +59,15 @@ export const CreateUserForm = () =>{
        {...register("phone")}
        error={errors.phone}
        />
-       <button>Cadastrar</button>
-      </form>
+       <StyledButton
+       fontWeight="md"
+       buttonSize="lg"
+       buttonStyle="primary"
+       type="submit"
+       >
+        Cadastrar
+        </StyledButton>
+      </StyledForm>
     </div>
   )
 }

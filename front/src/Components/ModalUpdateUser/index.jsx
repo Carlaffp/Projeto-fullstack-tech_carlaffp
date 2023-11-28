@@ -4,6 +4,10 @@ import { useContext, useEffect, useRef } from "react";
 import { UserContext } from "../../providers/UserContext";
 import { UpdateUserSchema } from "../Schemas/UpdateUserSchema";
 import { Input } from "../Input";
+import { StyledCloseButton, StyledDivModal, StyledModalContainer, StyledModalHeader, StyledModalmain } from "../../styles/modal";
+import { StyledForm } from "../../styles/form";
+import { StyledParagraph, StyledTitleOne } from "../../styles/typography";
+import { StyledButton } from "../../styles/buttons";
 
 export const ModalUpdateUser = ({ setIsOpen, user }) => {
   const {
@@ -36,13 +40,14 @@ export const ModalUpdateUser = ({ setIsOpen, user }) => {
   };
 
   return(
-    <div role="dialog">
-      <div ref={modalRef}>
-        <header>
-          <button onClick={() => setIsOpen(false)}> X </button>
-        </header>
-        <main>
-          <form onSubmit={handleSubmit(submit)}>
+    <StyledModalContainer role="dialog">
+      <StyledDivModal ref={modalRef}>
+        <StyledModalHeader>
+          <StyledTitleOne>Alterar seus dados</StyledTitleOne>
+          <StyledCloseButton onClick={() => setIsOpen(false)}> X </StyledCloseButton>
+        </StyledModalHeader>
+        <StyledModalmain>
+          <StyledForm onSubmit={handleSubmit(submit)}>
             <Input
               label = "Nome Completo"
               placeholder = "digite seu nome completo"
@@ -55,9 +60,8 @@ export const ModalUpdateUser = ({ setIsOpen, user }) => {
               placeholder = "digite seu email"
               type= "text"
               {...register("email", {required: "Email deve ser preenchido"})}
-            
             />
-            {errors.email && <p>{errors.email.message}</p>}
+            {errors.email && <StyledParagraph fontColor="red">{errors.email.message}</StyledParagraph>}
             <Input
               label = "Contato"
               placeholder = "digite seu telefone"
@@ -65,10 +69,11 @@ export const ModalUpdateUser = ({ setIsOpen, user }) => {
               {...register("phone")}
             
             />
-            <button>Salvar Alterações</button>
-          </form>
-        </main>
-      </div>
-    </div>
+            <StyledButton
+             buttonStyle="primary" buttonSize="lg" type="submit">Salvar Alterações</StyledButton>
+          </StyledForm>
+        </StyledModalmain>
+      </StyledDivModal>
+    </StyledModalContainer>
   )
 }

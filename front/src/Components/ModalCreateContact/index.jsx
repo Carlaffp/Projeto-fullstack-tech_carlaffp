@@ -4,6 +4,10 @@ import { ContactContext } from "../../providers/ContactContext";
 import { Input } from "../Input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { StyledTitleOne } from "../../styles/typography";
+import { StyledForm } from "../../styles/form";
+import { StyledButton } from "../../styles/buttons";
+import { StyledCloseButton, StyledDivModal, StyledModalContainer, StyledModalHeader, StyledModalmain } from "../../styles/modal";
 
 
 export const ModalCreateContact = ({setIsOpen}) =>{
@@ -40,14 +44,20 @@ export const ModalCreateContact = ({setIsOpen}) =>{
   }
 
   return(
-    <div role="dialog">
-      <div ref={modalRef}>
-        <header>
-          <h2>Cadastrar Contato</h2>
-          <button onClick={() => setIsOpen(false)}>X</button>
-        </header>
-        <main>
-          <form onSubmit={handleSubmit(submit)}>
+    <StyledModalContainer role="dialog">
+      <StyledDivModal ref={modalRef}>
+        <StyledModalHeader>
+          <div>
+
+          <StyledTitleOne fontSize="sm">Cadastrar Contato</StyledTitleOne>
+          </div>
+          <div>
+
+          <StyledCloseButton onClick={() => setIsOpen(false)}>X</StyledCloseButton>
+          </div>
+        </StyledModalHeader>
+        <StyledModalmain>
+          <StyledForm onSubmit={handleSubmit(submit)}>
             <Input
               label = "Nome Completo"
               placeholder = "digite o nome completo"
@@ -69,12 +79,12 @@ export const ModalCreateContact = ({setIsOpen}) =>{
               {...register("phone")}
               error={errors.phone}
             />
-            <button>Cadastrar</button>
-          </form>
-        </main>
+            <StyledButton buttonStyle="primary" buttonSize="lg" type="submit">Cadastrar</StyledButton>
+          </StyledForm>
+        </StyledModalmain>
 
-      </div>
-    </div>
+      </StyledDivModal>
+    </StyledModalContainer>
   )
 
 }

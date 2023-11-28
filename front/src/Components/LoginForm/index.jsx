@@ -6,6 +6,8 @@ import { UserContext } from "../../providers/UserContext";
 import { LoginSchema } from "../Schemas/LoginSchema";
 import {IoMdEye} from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
+import { StyledForm } from "../../styles/form";
+import { StyledButton } from "../../styles/buttons";
 
 
 export const LoginForm = () =>{
@@ -34,7 +36,7 @@ export const LoginForm = () =>{
 
   return(
     <div>
-      <form onSubmit={handleSubmit(submit)}>
+      <StyledForm onSubmit={handleSubmit(submit)}>
       <Input
           label="Email"
           type="email"
@@ -54,15 +56,25 @@ export const LoginForm = () =>{
           <button
           className="eyeButton"
           type="button"
-          onClick={handleTogglePassword}>
+          onClick={handleTogglePassword}
+          >
             {showPassword ? (
-              <IoMdEye/>): (<IoMdEyeOff/>)
+              <IoMdEye size={20} style={{ color: "black" }}/>): (
+              <IoMdEyeOff size={20} style={{ color: "black" }}/>)
             }
           </button>
         </Input>
-        <button>{loading? "Entrando..." : "Enviar"}</button>
+        <StyledButton
+        buttonStyle="primary"
+        buttonSize="lg"
+        fontWeight="md"
+        type="submit"
+        disabled={loading}
+        >
+          {loading? "Entrando..." : "Enviar"}
+          </StyledButton>
 
-      </form>
+      </StyledForm>
     </div>
   )
 }
