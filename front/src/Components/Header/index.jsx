@@ -13,6 +13,7 @@ export const Header = ()=>{
       <img width={130} height={130} src={logo} alt="ContactSphere" />
       <StyledButton
       fontWeight="lg"
+      buttonSize="sm"
       buttonStyle="disabled"
       onClick={logout}>Sair</StyledButton> 
       </StyledHeader>

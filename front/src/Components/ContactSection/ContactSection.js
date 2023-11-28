@@ -13,7 +13,7 @@ export const StyledContactSection = styled.section`
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 1rem;
+    padding: 1.875rem 1rem;
     margin: 0 auto;
     gap: 0.625rem;
   }

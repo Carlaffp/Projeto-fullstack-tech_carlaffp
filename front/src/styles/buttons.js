@@ -48,7 +48,7 @@ export const ButtonStyles = css`
           width: 2rem;
           padding: 0 1rem;
           height: 2rem;
-          font-size: 1rem;
+          font-size: 1.125rem;
         `;
     }
   }}

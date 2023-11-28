@@ -1,13 +1,21 @@
 import { Link } from "react-router-dom"
 import { CreateUserForm } from "../../Components/CreateUserForm"
 import { StyledLink } from "../../styles/buttons"
-import { StyledContainer } from "../../styles/grid"
+import { StyledContainer, StyledContainer1, StyledContainer2 } from "../../styles/grid"
 import { StyledTitleOne } from "../../styles/typography"
+import logo from "../../assets/logo.png"
+import { StyledRegisterPage } from "./RegisterPage"
 
 
 export const RegisterPage = ({setUser}) =>{
   return(
-    <div>
+    <StyledRegisterPage>
+      <StyledContainer1>
+        <div className="div">
+        <img  src={logo} alt="ContactSphere" style={{ width: '100%', height: '100%' }} ></img>
+        </div>
+      </StyledContainer1>
+      <StyledContainer2>
       <StyledContainer>
       <StyledTitleOne fontSize="lg">Crie sua conta</StyledTitleOne>
       <CreateUserForm setUser={setUser}/>
@@ -17,6 +25,7 @@ export const RegisterPage = ({setUser}) =>{
       buttonSize="lg"
       buttonStyle="disabled"> Voltar</StyledLink>
       </StyledContainer>
-    </div>
+      </StyledContainer2>
+    </StyledRegisterPage>
   )
 }
