@@ -61,7 +61,7 @@ export const ModalUpdateUser = ({ setIsOpen, user }) => {
               type= "text"
               {...register("email")}
             />
-            {/* {errors.email && <StyledParagraph fontColor="red">{errors.email.message}</StyledParagraph>} */}
+            
             <Input
               label = "Contato"
               placeholder = "digite seu telefone"

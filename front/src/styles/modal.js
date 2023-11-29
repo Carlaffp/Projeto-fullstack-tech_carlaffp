@@ -15,7 +15,7 @@ export const StyledModalContainer = styled.div`
 export const StyledDivModal = styled.div`
   width: 100%;
   max-width: 18.5rem;
-  height: 25.5rem;
+  height: 26.0625rem;
   background: var(--color-grey-0);
   border-radius: 4px;
 
