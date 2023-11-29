@@ -74,29 +74,28 @@ export const UserProvider = ({children}) =>{
   }
 
   const updateUser = async (formData, id) =>{
-    console.log("aqui", id)
     try{
       const token = localStorage.getItem("@TOKEN")
-      console.log(token)
-      console.log(formData)
+      console.log(user.email)
+      if(formData.email === ""){
+        formData.email = user.email
+      }
       const {data} = await api.patch(`/users/${id}`, formData,{
         headers:{
           Authorization: `Bearer ${token}`,
         }
       })
       console.log(data)
-      const newUser = data
-      console.log(user)
       if(data.id === id){
         setUser(data)
+        toast.success("Dados atualizados com sucesso") 
         return data
       }else{
-
         setUser(user)
       }
-      
     }catch (error) {
       console.log(error);
+      toast.error("Dados não atualizados")
     }
 
   }

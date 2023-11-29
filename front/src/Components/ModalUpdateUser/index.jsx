@@ -59,14 +59,21 @@ export const ModalUpdateUser = ({ setIsOpen, user }) => {
               label = "Email"
               placeholder = "digite seu email"
               type= "text"
-              {...register("email", {required: "Email deve ser preenchido"})}
+              {...register("email")}
             />
-            {errors.email && <StyledParagraph fontColor="red">{errors.email.message}</StyledParagraph>}
+            {/* {errors.email && <StyledParagraph fontColor="red">{errors.email.message}</StyledParagraph>} */}
             <Input
               label = "Contato"
               placeholder = "digite seu telefone"
               type= "text"
               {...register("phone")}
+            
+            />
+            <Input
+              label = "Password"
+              placeholder = "digite sua senha"
+              type= "text"
+              {...register("password")}
             
             />
             <StyledButton

@@ -27,7 +27,7 @@ Trata-se de uma solução para gerenciar usuários e seus contatos.
   - **GET/users**
   - **GET e PATCH e DELETE/users/:id**
 
-- Rotas que necessitam de **permissão** (somente o prórpio usuário tem permissão para listar ele mesmo ou atualizar ou deletar seus dados, de acordo com o id passado no parâmetro da requisição):
+- Rotas que necessitam de **permissão** (somente o próprio usuário tem permissão para listar ele mesmo ou atualizar ou deletar seus dados, de acordo com o id passado no parâmetro da requisição):
 
   - **GET e PATCH e DELETE/users/:id**
 
@@ -125,7 +125,7 @@ Trata-se de uma solução para gerenciar usuários e seus contatos.
 
   ```json
   {
-      "message": // mensagem padrão da biblioteca
+      "message": "invalid token"
   }
   ```
 - Nas rotas que necessitam de permissão:
@@ -292,6 +292,7 @@ Trata-se de uma solução para gerenciar usuários e seus contatos.
 
 - Deve atualizar um usuário pelo id recebido nos parâmetros da rota.
 - Não é necessário enviar todos os dados para atualização.
+- É permitido atualizar qualquer dado (inclusive a senha),´so não é possivel o createdAT (dado gerado automaticamente na criação do usuário).
 - É necessário enviar o **Bearer token** no Header dessa requisição.
 - Apenas usuários logados e com permissão podem acessar essa rota.
 
@@ -442,7 +443,7 @@ Na lista de contatos do usuário logado não pode haver contatos com o mesmo ema
 
   ```json
   {
-      "message": // mensagem padrão da biblioteca
+      "message": "invalid token"
   }
   ```
 #
@@ -490,7 +491,6 @@ Na lista de contatos do usuário logado não pode haver contatos com o mesmo ema
 		"id": 1,
 		"fullName": "Ugo Machado ",
 		"email": "ugo@mail.com.br",
-		"password": "$2a$10$pR6vr/S7CtwFXMYNUNXmP.qoMcSqu6xizj0p9.u5ZZq3D03frMjq6",
 		"phone": "34733940",
 		"createdAt": "2023-11-21"
 	}
@@ -541,7 +541,7 @@ Na lista de contatos do usuário logado não pode haver contatos com o mesmo ema
   ```
 #
 
-### **GET /users/:id**
+### **GET /contacts/:id**
 
 - Deve listar o contato cujo id foi recebido nos parâmetros da rota, caso o usuário logado tenha em sua lista de contatos um contato com o id informado este será listado.
 - É necessário enviar o **Bearer token** no Header dessa requisição.
@@ -580,7 +580,7 @@ Na lista de contatos do usuário logado não pode haver contatos com o mesmo ema
 - Não é necessário enviar todos os dados para atualização.
 - Apenas usuários logados podem acessar essa rota.
 - É necessário enviar o **Bearer token** no Header dessa requisição.
-- È verificado na tabela de contatos se o id recebido nos parâmetros existe e se na lista de contatos do usuário logado existe algum contato com o id recebido nos parâmetros da rota.
+- É verificado na tabela de contatos se o id recebido nos parâmetros existe e se na lista de contatos do usuário logado existe algum contato com o id recebido nos parâmetros da rota.
 
   | Dados de entrada:  |
   | ------------------ |
@@ -603,7 +603,7 @@ Na lista de contatos do usuário logado não pode haver contatos com o mesmo ema
   {
 		"id": 1,
 		"fullName": "Luna Borges Campelo",
-		"email": "lunacampleo@mail.com.br",
+		"email": "lunacampleo@mail.com",
 		"phone": "34343434",
 		"createdAt": "2023-11-22"
   }
