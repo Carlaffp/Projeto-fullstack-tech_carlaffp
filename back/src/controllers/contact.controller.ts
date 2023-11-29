@@ -11,13 +11,13 @@ const createContactController = async(req: Request, res: Response): Promise<Resp
 const readContactController = async(req: Request, res:Response):Promise<Response> =>{
   const {sub} = res.locals.decoded
   const contact = await contactReadService(sub)
-  return res.status(201).json(contact)
+  return res.status(200).json(contact)
 }
 
   const retrieveContactController = async(req: Request, res:Response):Promise<Response> =>{
     const contactId: number = Number(req.params.id)
     const contact = await contactRetrieveService(contactId)
-    return res.status(201).json(contact)
+    return res.status(200).json(contact)
   }
 
   const updateContactController = async(req: Request, res:Response):Promise<Response> =>{

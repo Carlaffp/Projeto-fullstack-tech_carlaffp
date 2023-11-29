@@ -8,7 +8,7 @@ import { contactSchema, contactReturnSchema} from "../schemas/contact.schema";
   const contactCreateService = async(userId: number, payload:ContactCreat): Promise<ContactReturn> =>{
     const user: User | null = await userRepository.findOneBy({id: userId})
     if(!user) {
-      throw new AppError("user not found")
+      throw new AppError("user not found", 404)
     }
 
     const foundEmail = await contactRepository.createQueryBuilder("contact")
@@ -18,12 +18,12 @@ import { contactSchema, contactReturnSchema} from "../schemas/contact.schema";
     const result = await foundEmail.getMany()
     
     if(result.length != 0){
-      throw new AppError("There is already a contact registered with this email.")
+      throw new AppError("There is already a contact registered with this email.", 409)
 
     }
     const contact: Contact = contactRepository.create({user, ...payload})
     await contactRepository.save(contact)
-    return contactSchema.parse(contact)
+    return contactReturnSchema.parse(contact)
   }
 
 
@@ -51,7 +51,7 @@ import { contactSchema, contactReturnSchema} from "../schemas/contact.schema";
 
  const contactUpdateService = async(contact: number, payload:ContactUpdate | any, userId:number):Promise<Contact> =>{
   const foundContact: Contact | null = await contactRepository.findOneBy({id:contact})
-  if (!foundContact) throw new AppError("Contact not found")
+  if (!foundContact) throw new AppError("Contact not found", 404)
   
   const newData = payload
   for(const key in newData){
@@ -66,7 +66,7 @@ import { contactSchema, contactReturnSchema} from "../schemas/contact.schema";
   const result = await foundEmail.getMany()
   
   if(result.length != 0){
-    throw new AppError("There is already a contact registered with this email.")
+    throw new AppError("There is already a contact registered with this email.", 409)
 
   }
   

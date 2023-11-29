@@ -18,7 +18,7 @@ const verifyUserContactExists = async (
     }
   })
   if (!foundUserContact){
-    throw new AppError(`Not found contact id ${contactId} for this user`, 409)
+    throw new AppError(`Not found contact id ${contactId} for this user.`, 404)
   }
 
   return next();
