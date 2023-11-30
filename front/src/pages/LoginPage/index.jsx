@@ -20,7 +20,9 @@ export const LoginPage = ({setUser}) =>{
           
       <StyledTitleOne fontSize="lg">Login</StyledTitleOne>
       <LoginForm setUser={setUser}/>
-      <StyledParagraph fontSize="sm" fontWeight="lg">Ainda não possui uma conta?</StyledParagraph>
+      <StyledParagraph fontSize="sm" fontWeight="lg">
+        Ainda não possui uma conta?
+        </StyledParagraph>
       <StyledLink
       to="/register"
       fontWeight="lg"

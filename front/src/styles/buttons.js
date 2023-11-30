@@ -57,13 +57,13 @@ export const ButtonStyles = css`
     switch (buttonStyle) {
       case "primary":
         return css`
-          background: var(--color-primary-focus);
-          border: 0.0625rem solid var(--color-primary-focus);
+          background: var(--color-secondary);
+          border: 0.0625rem solid var(--color-secondary);
           color: var(--color-white);
 
           &:hover {
-            background: var(--color-black);
-            border: 0.0625rem solid var(--color-black);
+            background: var(--color-primary-focus);
+            border: 0.0625rem solid var(--color-primary-focus);
           }
         `;
 

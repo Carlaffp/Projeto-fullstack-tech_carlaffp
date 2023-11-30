@@ -10,7 +10,7 @@ export const Input = forwardRef(({label,error, children, ...rest}, ref) =>{
       <StyledInputs ref={ref} {...rest}/>
         {children}
     </div>
-    {error ? (<StyledParagraph fontColor="red">{error.message}</StyledParagraph>): null}
+    {error ? (<StyledParagraph fontWeight="sm" fontColor=" #DA2C43">{error.message}</StyledParagraph>): null}
     </StyledFildBox>
   )
 })

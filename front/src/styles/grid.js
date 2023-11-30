@@ -5,7 +5,7 @@ export const StyledContainer = styled.div`
   max-width: 369px;
   margin: 50px auto 3.125rem;
   padding: 2.0625rem 1.125rem;
-  background: var(--color-gray-3);
+  background: var(--color-grey-0);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -33,7 +33,7 @@ export const StyledContainer2 = styled.div`
   height: 100vh;
   min-width: 369px;
   padding: 2.0625rem 1.125rem;
-  background: var(--color-gray-3);
+  background: var(--color-grey-0);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;

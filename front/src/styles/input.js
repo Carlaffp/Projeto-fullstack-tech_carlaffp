@@ -21,9 +21,9 @@ export const StyledInputs = styled.input`
   font-weight: 600;
   color: var(--color-black);
   padding: 0 0.8125rem;
-  background: var(--color-primary);
+  background: var(--color-white);
   border-radius: 0.1875rem;
-  border: 1px solid var(--color-primary);
+  border: 2px solid var(--color-primary);
 `;
 export const StyledLaabel = styled.label`
   font-family: var(--font-primary);
