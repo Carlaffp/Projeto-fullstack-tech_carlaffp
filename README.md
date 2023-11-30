@@ -15,7 +15,7 @@ Trata-se de uma solução para gerenciar usuários e seus contatos.
 
 ## Configurando o ambiente e startando o front-end (pasta front)
 - Para conseguir rodar a aplicação front-end é necessário ter o **Node.js** instalado e configurado em sua máquina, para isso você pode acessar o site **nodejs.org** .
-- - Ao clonar o repositório, instale as dependências com o comando **npm install**.
+- Ao clonar o repositório, instale as dependências com o comando **npm install**.
 - inicie a aplicação com o comando: **npm run dev**
 
 
