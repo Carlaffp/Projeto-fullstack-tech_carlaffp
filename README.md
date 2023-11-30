@@ -4,7 +4,7 @@
 
 Trata-se de uma solução para gerenciar usuários e seus contatos.
 
-# Configurando o ambiente e startando o back-end -API (pasta back)
+## Configurando o ambiente e startando o back-end -API (pasta back)
 
 - Para conseguir rodar a aplicação back-end é necessário ter o **PostgreSQL** instalado e configurado em sua máquina, pode acessar a documentação oficial no site postgresql.org.
 - Acesse o PostgreSQL pelo terminal e crie um DATABASE.
@@ -13,7 +13,7 @@ Trata-se de uma solução para gerenciar usuários e seus contatos.
 - Execute as migrações com o comando:                     **npm run typeorm migration:run -- -d ./src/data-source**
 - inicie a aplicação com o comando: **npm run dev**
 
-# Configurando o ambiente e startando o front-end (pasta front)
+## Configurando o ambiente e startando o front-end (pasta front)
 - Para conseguir rodar a aplicação front-end é necessário ter o **Node.js** instalado e configurado em sua máquina, para isso você pode acessar o site **nodejs.org** .
 - - Ao clonar o repositório, instale as dependências com o comando **npm install**.
 - inicie a aplicação com o comando: **npm run dev**
